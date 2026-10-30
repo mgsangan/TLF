@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>For Calli</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        background: linear-gradient(135deg, #a7c7e7, #ff9aeb, #ffffff);
+        font-family: "Georgia", serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        color: #2e2e2e;
+        flex-direction: column;
+        margin: 0;
+        padding: 10px;
+        overflow: hidden;
+      }
+      #intro {
+        animation: fadeIn 2s ease-in-out;
+      }
+      #message {
+        font-size: 20px;
+        max-width: 95%;
+        white-space: pre-wrap;
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        padding: 20px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(10px);
+        display: none;
+        margin: auto;
+        line-height: 1.8;
+        box-shadow: 0 0 25px rgba(100, 150, 255, 0.5);
+        animation: glow 3s infinite alternate;
+      }
+      button {
+        padding: 14px 28px;
+        font-size: 16px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(45deg, #6fa8dc, #ff9aeb);
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      button:hover {
+        transform: scale(1.08);
+        box-shadow: 0 0 20px rgba(173, 216, 230, 0.8);
+      }
+      h1 {
+        font-family: "Brush Script MT", cursive;
+        font-size: 34px;
+        margin-bottom: 20px;
+        color: #fff;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+        animation: heartbeat 2s infinite;
+      }
+      @media (max-width: 600px) {
+        #message {
+          font-size: 16px;
+          padding: 12px;
+        }
+        h1 {
+          font-size: 26px;
+        }
+        button {
+          font-size: 14px;
+          padding: 10px 20px;
+        }
+      }
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes glow {
+        from {
+          box-shadow: 0 0 15px rgba(100, 150, 255, 0.4);
+        }
+        to {
+          box-shadow: 0 0 30px rgba(255, 105, 180, 0.9);
+        }
+      }
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+      /* Floating hearts */
+      .heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #6fa8dc;
+        transform: rotate(45deg);
+        animation: float 8s infinite;
+        opacity: 0.8;
+      }
+      .heart::before,
+      .heart::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #ff9aeb;
+        border-radius: 50%;
+      }
+      .heart::before {
+        top: -10px;
+        left: 0;
+      }
+      .heart::after {
+        left: -10px;
+        top: 0;
+      }
+      @keyframes float {
+        0% {
+          bottom: -10%;
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          bottom: 110%;
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="intro">
+      <h1>💙💖 To My mommy Calli 💖💙</h1>
+      <button onclick="playMusic()">Click to Begin</button>
+    </div>
+    <audio id="song" src="Mapa.mp3"></audio>
+    <div id="message"></div>
+
+    <!-- Floating hearts -->
+    <div class="heart" style="left: 20%; animation-delay: 0s"></div>
+    <div class="heart" style="left: 50%; animation-delay: 2s"></div>
+    <div class="heart" style="left: 80%; animation-delay: 4s"></div>
+
+    <script>
+      const text = `Eto na mommy last kadramahan maybe at this point quit litmatch na ako, But I just want to say THANK YOU. Thank you sa mga naitulong mo sakin and thank you kahit naiistress ka sakin andyan ka parin you acted like a real mother to me.
+
+Iwasan mo na mastress mommy ha be strong sa lahat ng bagay and sorry if iiwanan ko na kayo sa lm cause I admit it mommy mahal ko na si luna and para makabawi sa lahat ng pagkakamali ko sa kanya naisip kong mag quit Lm hindi niya hiniling but I want kasi ayun nakikita ko para makabawi. And want ko rin mag focus sa real life mag hanap ng work. Need ko rin mommy to stand to my own.
+
+Kapag may issue sumbong mo agad kay dad gin or kay mommy mulan rin or kick mo na agad para hindi ka mastress. Huwag mo sana bitawan ang Fam mommy ang laki na ng naipundar mo dyan alisin mo nalang yung iba.
+
+Ikaw na bahala sakin mommy kung ikikick mo mommy don’t forget mommy to be happy thank you and I love you mommy
+
+-Mark Gerard R. Sangan(aka FUNDADOR)`;
+
+      function playMusic() {
+        const song = document.getElementById("song");
+        song.play();
+        document.getElementById("intro").style.display = "none";
+        setTimeout(showMessage, 22000);
+      }
+
+      function showMessage() {
+        const messageDiv = document.getElementById("message");
+        messageDiv.style.display = "block";
+        messageDiv.textContent = "";
+        typeWriter(text, messageDiv, 0);
+      }
+
+      function typeWriter(text, element, i) {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          setTimeout(() => typeWriter(text, element, i + 1), 50);
+        }
+      }
+    </script>
+  </body>
+</html>
